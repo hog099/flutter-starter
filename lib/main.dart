@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_starter/core/app_colors.dart';
+import 'package:flutter_starter/pages/splash/splashscreen_page.dart';
+import 'core/app_images.dart';
 import 'package:flutter_starter/pages/home/home_page.dart';
+import 'package:flutter_starter/pages/splash/splash_page.dart';
 import 'package:flutter_starter/store/theme/theme_store.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -11,7 +16,9 @@ void main() {
     Provider<ThemeStore>(
       create: (_) => ThemeStore(),
     )
-  ], child: MyApp()));
+  ], child: MyApp()
+      // child: new MaterialApp(home: MyApp())
+      )); // Runapp
 }
 
 class MyApp extends StatelessWidget {
@@ -28,70 +35,65 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class HomePage extends StatelessWidget {
+
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => new _MyAppState();
+// }
+
+
+// class _MyAppState extends State<MyApp> {
+//   final ThemeStore themeStore = ThemeStore();
+
 //   @override
 //   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Mobx Theme'),
-//         actions: <Widget>[
-//           ElevatedButton(
-//             // onPressed: () => null,
-//             onPressed: () => Navigator.push(
-//               context,
-//               CupertinoPageRoute(builder: (context) => SettingPage()),
-//             ),
-//             child: Text('Change Theme SettingPage'),
-//           ),
-//         ],
-//       ),
-//       body: Center(
-//           child: Column(
-//         children: <Widget>[
-//           Card(
-//             child: Observer(builder: (context) {
-//               return ListTile(
-//                 title: Text(
-//                     'The current theme is : ${context.watch<ThemeStore>().themeString}'),
-//               );
-//             }),
-//           ),
-//           MaterialButton(
-//             color: Colors.deepPurple,
-//             textColor: Colors.white,
-//             onPressed: () {
-//               Navigator.push(context,
-//                   MaterialPageRoute(builder: (context) => SettingPage()));
-//             },
-//             child: Text('Go to Setting Page'),
-//           )
-//         ],
-//       )),
+//     return new MaterialApp(
+//       title: 'Flutter SplashScreen',
+//       home: new SplashPage02(),
+//       routes: <String, WidgetBuilder>{
+//         '/HomePage': (BuildContext context) => new HomePage()
+//       },
+//     );
+
+//     // return Observer(builder: (context) {
+//     //   return new HomePage(themeStore: themeStore);
+//     // });
+//   }
+// }
+
+
+
+
+
+// TRYING SPLASHSCREEN LILB
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return new SplashScreen(
+//       seconds: 3,
+//       navigateAfterSeconds: new AfterSplash(),
+//       // title: new Text(
+//       //   'Welcome In SplashScreen',
+//       //   style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+//       // ),
+//       // image: new Image.asset(AppImages.logo),
+//       image: new Image.network('https://i.imgur.com/TyCSG9A.png'),
+//       backgroundColor: AppColors.grey,
+//       photoSize: 100.0,
+//       styleTextUnderTheLoader: new TextStyle(),
+//       // loaderColor: AppColors.chartPrimary
 //     );
 //   }
 // }
 
-// class SettingPage extends StatelessWidget {
+// class AfterSplash extends StatelessWidget {
+//   final ThemeStore themeStore = ThemeStore();
 //   @override
 //   Widget build(BuildContext context) {
-//     final themeStore = context.watch<ThemeStore>();
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Setting'),
-//       ),
-//       body: Center(
-//         child: MaterialButton(
-//           color: Colors.deepPurple,
-//           textColor: Colors.white,
-//           onPressed: () {
-//             ThemeType changeTo = themeStore.currentThemeType == ThemeType.light
-//                 ? ThemeType.dark
-//                 : ThemeType.light;
-//             themeStore.changeCurrentTheme(changeTo);
-//           },
-//           child: Text('Change Theme'),
-//         ),
-//       ),
-//     );
+//     return Observer(builder: (context) {
+//       return new HomePage(themeStore: themeStore);
+//     });
 //   }
 // }
+
